@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CliqueZone.iml" filepath="$PROJECT_DIR$/CliqueZone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DB.iml" filepath="$PROJECT_DIR$/DB.iml" />
     </modules>
   </component>
 </project>
