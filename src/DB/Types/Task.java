@@ -10,8 +10,6 @@ public class Task {
     private String address;
     private String telephone;
     private TimeZone creationTime;
-    private int FRZ;
-    private int quantityNeeded;
     private ELevel level;
 
 }
