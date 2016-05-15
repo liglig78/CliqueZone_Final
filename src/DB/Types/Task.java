@@ -9,7 +9,8 @@ public class Task {
     private int idTask;
     private String address;
     private String telephone;
-    private TimeZone creationTime;
+    private TimeZone creatintionTime;
     private ELevel level;
+    private int liglig;
 
 }
