@@ -1,6 +1,6 @@
 package DB.DBActions;
 
-import DB.GeneralDBType;
+import DB.Types.GeneralDBType;
 import com.opencsv.CSVReader;
 
 import java.io.FileReader;
@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Toshiba on 13/05/2016.
  */
 public class ReadExcel {
-    private static String fileNameAgents = "C:\\Users\\Toshiba\\Google Drive\\המכללה למנהל\\שנה שלישית\\פרוייקט גמר\\כליקשטח\\איפיון\\DB\\תיקיה חדשה\\AgentsDB.csv";
+    private static String fileNameAgents = "..\\src\\resources\\files\\AgentsDB.csv";
 
     public static void main (String args[]) {
         try {
