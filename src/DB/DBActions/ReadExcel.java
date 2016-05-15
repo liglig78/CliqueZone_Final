@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Toshiba on 13/05/2016.
  */
 public class ReadExcel {
-    private static String fileNameAgents = "..\\src\\resources\\files\\AgentsDB.csv";
+    private static String fileNameAgents = "..\\..\\src\\resources\\files\\AgentsDB.csv";
 
     public static void main (String args[]) {
         try {
