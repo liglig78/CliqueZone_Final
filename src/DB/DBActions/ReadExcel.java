@@ -45,17 +45,12 @@ public class ReadExcel {
             technician.setName(nextLine[1]);
             technician.setBeginningTime(nextLine[2]);
             technician.setWorkHoures(Float.parseFloat(nextLine[3]));
-            technician.setSpecialty(Int.parseFloat(nextLine[3]));
-
-
+            technician.setSpecialty(Integer.parseInt(nextLine[4]));
+            technician.setHomeLocation(nextLine[5]);
+            technician.setSeniority(Integer.parseInt(nextLine[6]));
+            technician.setInOffice(Boolean.parseBoolean(nextLine[7]));
 
             techniciansList.add(technician);
-
-
-
-            // nextLine[] is an array of values from the line
-            System.out.println(nextLine[0] +", " + nextLine[1] +", " +  nextLine[1]);
-            System.out.println(technician.toString());
         }
     }
 
