@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 public class Task extends GeneralDBType {
     private int idTask;
+    private String coustumerName;
     private String address;
     private String telephone;
     private String creatintionTime;
@@ -18,11 +19,11 @@ public class Task extends GeneralDBType {
     private String timeToFix;
     private String decripation;
 
-
     @Override
     public String toString() {
         return "Task{" +
                 "idTask=" + idTask +
+                ", coustumerName='" + coustumerName + '\'' +
                 ", address='" + address + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", creatintionTime='" + creatintionTime + '\'' +
@@ -34,6 +35,14 @@ public class Task extends GeneralDBType {
                 ", timeToFix='" + timeToFix + '\'' +
                 ", decripation='" + decripation + '\'' +
                 '}';
+    }
+
+    public String getCoustumerName() {
+        return coustumerName;
+    }
+
+    public void setCoustumerName(String coustumerName) {
+        this.coustumerName = coustumerName;
     }
 
     public int getIdTask() {

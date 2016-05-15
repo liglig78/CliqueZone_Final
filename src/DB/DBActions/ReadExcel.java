@@ -26,9 +26,10 @@ public class ReadExcel {
 
         String PROJECT_PATH = new File(".").getCanonicalPath();
         String fileNameAgents = PROJECT_PATH  + "\\src\\resources\\files\\AgentsDB.csv";
+        String fileNameTasks = PROJECT_PATH + "\\src\\resources\\files\\TasksDB.csv";
 
         readTechniciansExcelFile(fileNameAgents);
-       // readTasksExcelFile(fileNameAgents);
+        readTasksExcelFile(fileNameTasks);
     }
 
     private static void readTechniciansExcelFile(String fileName) throws IOException {
@@ -55,15 +56,32 @@ public class ReadExcel {
         }
     }
 
-    public static List<GeneralDBType> readExcelFile(String fileName) throws IOException {
+    private static void readTasksExcelFile(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
-
         String [] nextLine;
+        //task number,coustumerName,address,telephone,creationTime,FRZ,כמות,level,toolshed,vipCustomer,due date,WindowToSupply,timeToFix,decripation
+        reader.readNext();
 
-        while ((nextLine = reader.readNext()) != null) {
-            // nextLine[] is an array of values from the line
-            System.out.println(nextLine[0] + nextLine[1] + "סתיו...");
+        while ((nextLine = reader.readNext()) != null)
+        {
+
+            Task task = new Task();
+
+            task.setIdTask(Integer.parseInt(nextLine[0]));
+            task.setCoustumerName(nextLine[1]);
+            task.setAddress(nextLine[2]);
+            task.setTelephone(nextLine[3]);
+            task.setCreatintionTime(nextLine[4]);
+            task.setLevel(Float.parseFloat(nextLine[7]));
+            task.setToolShed(Boolean.parseBoolean(nextLine[8]));
+            task.setVipCustomer(Boolean.parseBoolean(nextLine[9]));
+            task.setDueDate(nextLine[10]);
+            task.setWindowToSupply(nextLine[11]);
+            task.setTimeToFix(nextLine[12]);
+            task.setDecripation(nextLine[13]);
+
+            taskList.add(task);
         }
-        return null;
     }
+
 }
