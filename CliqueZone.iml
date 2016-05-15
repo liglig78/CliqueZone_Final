@@ -19,10 +19,10 @@
         <jarDirectory url="file://$MODULE_DIR$/../poi-3.14" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../opencsv-3.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/opencsv-3.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
