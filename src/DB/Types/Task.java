@@ -10,7 +10,13 @@ public class Task {
     private String address;
     private String telephone;
     private TimeZone creatintionTime;
-    private ELevel level;
-    private int liglig;
+    private float level;
+    private  boolean toolShed;
+    private  boolean vipCustomer;
+    private  TimeZone dueDate;
+    private TimeZone windowToSupply;
+    private TimeZone timeToFix;
+    private String decripation;
+
 
 }

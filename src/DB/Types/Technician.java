@@ -9,6 +9,7 @@ import java.util.TimeZone;
 public class Technician {
 
     int id;
+    String name;
     TimeZone beginningTime;
     float workHoures;
     int specialty;
