@@ -3,23 +3,24 @@ package DB.DBActions;
 import DB.Types.GeneralDBType;
 import com.opencsv.CSVReader;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 /**
  * Created by Toshiba on 13/05/2016.
  */
 public class ReadExcel {
-    private static String fileNameAgents = "..\\..\\src\\resources\\files\\AgentsDB.csv";
 
-    public static void main (String args[]) {
-        try {
-            readExcelFile(fileNameAgents);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+    public static void main (String args[]) throws IOException {
+        String PROJECT_PATH = new File(".").getCanonicalPath();
+        String fileNameAgents = PROJECT_PATH  + "\\src\\resources\\files\\AgentsDB.csv";
+
+        System.out.println(fileNameAgents);
+        readExcelFile(fileNameAgents);
     }
 
     public static List<GeneralDBType> readExcelFile(String fileName) throws IOException {
