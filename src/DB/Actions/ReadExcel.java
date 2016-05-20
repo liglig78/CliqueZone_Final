@@ -1,6 +1,5 @@
-package Actions;
-import Types.Task;
-import Types.Technician;
+package DB.Actions;
+import DB.Types.*;
 import com.opencsv.CSVReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,23 +13,26 @@ import java.util.List;
 public class ReadExcel {
     private static List<Technician> techniciansList;
     private static List<Task> taskList;
+    String PROJECT_PATH = new File(".").getCanonicalPath();
+    String fileNameAgents = "./resources/AgentsDB.csv";
+    String fileNameTasks = PROJECT_PATH + "\\resources\\TasksDB2.csv";
 
-    public ReadExcel() {
+    public ReadExcel() throws IOException {
         this.techniciansList = new ArrayList<Technician>();
         this.taskList = new ArrayList<Task>();
-    }
-
-    public static void main (String args[]) throws IOException {
-
-        String PROJECT_PATH = new File(".").getCanonicalPath();
-        String fileNameAgents = PROJECT_PATH  + "\\src\\resources\\files\\AgentsDB.csv";
-        String fileNameTasks = PROJECT_PATH + "\\src\\resources\\files\\TasksDB.csv";
-
         readTechniciansExcelFile(fileNameAgents);
         readTasksExcelFile(fileNameTasks);
     }
 
-    private static void readTechniciansExcelFile(String fileName) throws IOException {
+
+    public static void main (String args[]) throws IOException {
+        ReadExcel readExcel = new ReadExcel();
+
+
+
+    }
+
+    private void readTechniciansExcelFile(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
         String [] nextLine;
         //id,name,Beginning time,work houres,specialty,HomeLocation,seniority,isInOffice
@@ -50,11 +52,12 @@ public class ReadExcel {
             technician.setSeniority(Integer.parseInt(nextLine[6]));
             technician.setInOffice(Boolean.parseBoolean(nextLine[7]));
 
+            System.out.println("technician = " + technician);
             techniciansList.add(technician);
         }
     }
 
-    private static void readTasksExcelFile(String fileName) throws IOException {
+    private void readTasksExcelFile(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
         String [] nextLine;
         //task number,coustumerName,address,telephone,creationTime,FRZ,כמות,level,toolshed,vipCustomer,due date,WindowToSupply,timeToFix,decripation
@@ -78,6 +81,7 @@ public class ReadExcel {
             task.setTimeToFix(nextLine[12]);
             task.setDecripation(nextLine[13]);
 
+            System.out.println("task = " + task);
             taskList.add(task);
         }
     }
