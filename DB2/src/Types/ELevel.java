@@ -1,4 +1,4 @@
-package DB.Types;
+package Types;
 
 /**
  * Created by ASUS-PC on 13/05/2016.

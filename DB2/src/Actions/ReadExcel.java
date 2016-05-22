@@ -1,21 +1,19 @@
-package DB.DBActions;
-
-import DB.Types.GeneralDBType;
-import DB.Types.Task;
-import DB.Types.Technician;
+package Actions;
+import Types.Task;
+import Types.Technician;
 import com.opencsv.CSVReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * Created by Toshiba on 13/05/2016.
+ * Created by ASUS-PC on 22/05/2016.
  */
 public class ReadExcel {
-
-   private static List<Technician> techniciansList;
-   private static List<Task> taskList;
+    private static List<Technician> techniciansList;
+    private static List<Task> taskList;
 
     public ReadExcel() {
         this.techniciansList = new ArrayList<Technician>();

@@ -1,4 +1,4 @@
-package DB.Types;
+package Types;
 
 /**
  * Created by Toshiba on 15/05/2016.

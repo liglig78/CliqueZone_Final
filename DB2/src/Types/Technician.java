@@ -1,4 +1,4 @@
-package DB.Types;
+package Types;
 /**
  * Created by ASUS-PC on 13/05/2016.
  */
@@ -19,7 +19,7 @@ public class Technician {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", beginningTime='" + beginningTime + '\'' +
-                ", workHoures=" + workHoures +
+                ", workHores=" + workHoures +
                 ", specialty=" + specialty +
                 ", homeLocation='" + homeLocation + '\'' +
                 ", seniority=" + seniority +
