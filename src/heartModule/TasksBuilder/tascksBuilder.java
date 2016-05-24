@@ -1,5 +1,6 @@
 package heartModule.TasksBuilder;
 import heartModule.Conf;
+import org.joda.time.DateTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,9 @@ public class tascksBuilder {
 
         double tp = Math.max((int)level, Math.max((vipCustomer)?1:0, /*Today*/(d1 == today)?1:0)) * Conf.criticalFactor;
         // TODO: Ageing.bhsjhf
+
+        DateTime testlig = new DateTime();
+
 
         return tp;
     }
