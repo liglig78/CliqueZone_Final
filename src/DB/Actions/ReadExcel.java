@@ -1,6 +1,8 @@
 package DB.Actions;
+
 import DB.Types.*;
 import com.opencsv.CSVReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.util.List;
 /**
  * Created by ASUS-PC on 22/05/2016.
  */
-public class ReadExcel {
+public class ReadExcel implements Runnable {
     private static List<Technician> techniciansList;
     private static List<Task> taskList;
     String PROJECT_PATH = new File(".").getCanonicalPath();
@@ -20,21 +22,12 @@ public class ReadExcel {
     public ReadExcel() throws IOException {
         this.techniciansList = new ArrayList<Technician>();
         this.taskList = new ArrayList<Task>();
-        readTechniciansExcelFile(fileNameAgents);
-        readTasksExcelFile(fileNameTasks);
-    }
-
-
-    public static void main (String args[]) throws IOException {
-        ReadExcel readExcel = new ReadExcel();
-
-
 
     }
 
     private void readTechniciansExcelFile(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
-        String [] nextLine;
+        String[] nextLine;
         //id,name,Beginning time,work houres,specialty,HomeLocation,seniority,isInOffice
 
         reader.readNext();
@@ -59,13 +52,11 @@ public class ReadExcel {
 
     private void readTasksExcelFile(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
-        String [] nextLine;
+        String[] nextLine;
         //task number,coustumerName,address,telephone,creationTime,FRZ,כמות,level,toolshed,vipCustomer,due date,WindowToSupply,timeToFix,decripation
         reader.readNext();
 
-        while ((nextLine = reader.readNext()) != null)
-        {
-
+        while ((nextLine = reader.readNext()) != null) {
             Task task = new Task();
 
             task.setIdTask(Integer.parseInt(nextLine[0]));
@@ -86,4 +77,13 @@ public class ReadExcel {
         }
     }
 
+    @Override
+    public void run() {
+        try {
+            readTechniciansExcelFile(fileNameAgents);
+            readTasksExcelFile(fileNameTasks);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
