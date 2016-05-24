@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CliqueZone.iml" filepath="$PROJECT_DIR$/CliqueZone.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DB2/DB2.iml" filepath="$PROJECT_DIR$/DB2/DB2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HeartModule/HeartModule.iml" filepath="$PROJECT_DIR$/HeartModule/HeartModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test.iml" filepath="$PROJECT_DIR$/Test.iml" />
     </modules>
   </component>
