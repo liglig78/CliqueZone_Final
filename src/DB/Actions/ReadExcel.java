@@ -13,11 +13,20 @@ import java.util.List;
  * Created by ASUS-PC on 22/05/2016.
  */
 public class ReadExcel implements Runnable {
-    private static List<Technician> techniciansList;
-    private static List<Task> taskList;
+    private List<Technician> techniciansList;
+    private List<Task> taskList;
+
+    public List<Technician> getTechniciansList() {
+        return techniciansList;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
     String PROJECT_PATH = new File(".").getCanonicalPath();
     String fileNameAgents = "./resources/AgentsDB.csv";
-    String fileNameTasks = PROJECT_PATH + "\\resources\\TasksDB2.csv";
+    String fileNameTasks = "./resources/TaskDB.csv";
 
     public ReadExcel() throws IOException {
         this.techniciansList = new ArrayList<Technician>();
@@ -30,7 +39,7 @@ public class ReadExcel implements Runnable {
         String[] nextLine;
         //id,name,Beginning time,work houres,specialty,HomeLocation,seniority,isInOffice
 
-        reader.readNext();
+       reader.readNext();
 
         while ((nextLine = reader.readNext()) != null) {
 
@@ -53,8 +62,8 @@ public class ReadExcel implements Runnable {
     private void readTasksExcelFile(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
         String[] nextLine;
-        //task number,coustumerName,address,telephone,creationTime,FRZ,כמות,level,toolshed,vipCustomer,due date,WindowToSupply,timeToFix,decripation
-        reader.readNext();
+
+        nextLine = reader.readNext();
 
         while ((nextLine = reader.readNext()) != null) {
             Task task = new Task();
@@ -68,9 +77,10 @@ public class ReadExcel implements Runnable {
             task.setToolShed(Boolean.parseBoolean(nextLine[8]));
             task.setVipCustomer(Boolean.parseBoolean(nextLine[9]));
             task.setDueDate(nextLine[10]);
-            task.setWindowToSupply(nextLine[11]);
-            task.setTimeToFix(nextLine[12]);
-            task.setDecripation(nextLine[13]);
+            task.setDueDateTime(nextLine[11]);
+            task.setWindowToSupply(Integer.parseInt(nextLine[12]));
+            task.setTimeToFix(Integer.parseInt(nextLine[13]));
+            task.setDecripation(nextLine[14]);
 
             System.out.println("task = " + task);
             taskList.add(task);

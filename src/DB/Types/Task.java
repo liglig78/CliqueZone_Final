@@ -1,4 +1,5 @@
 package DB.Types;
+
 /**
  * Created by ASUS-PC on 13/05/2016.
  */
@@ -9,11 +10,15 @@ public class Task extends GeneralDBType {
     private String telephone;
     private String creatintionTime;
     private float level;
-    private  boolean toolShed;
-    private  boolean vipCustomer;
-    private  String dueDate;
-    private String windowToSupply;
-    private String timeToFix;
+    private boolean toolShed;
+    private boolean vipCustomer;
+    private String dueDate;
+    // when tecnition can visit (time in day)
+    private String dueDateTime;
+    // in houres
+    private int windowToSupply;
+    // in minuts
+    private int timeToFix;
     private String decripation;
 
     @Override
@@ -28,8 +33,9 @@ public class Task extends GeneralDBType {
                 ", toolShed=" + toolShed +
                 ", vipCustomer=" + vipCustomer +
                 ", dueDate='" + dueDate + '\'' +
-                ", windowToSupply='" + windowToSupply + '\'' +
-                ", timeToFix='" + timeToFix + '\'' +
+                ", dueDateTime='" + dueDateTime + '\'' +
+                ", windowToSupply=" + windowToSupply +
+                ", timeToFix=" + timeToFix +
                 ", decripation='" + decripation + '\'' +
                 '}';
     }
@@ -106,22 +112,6 @@ public class Task extends GeneralDBType {
         this.dueDate = dueDate;
     }
 
-    public String getWindowToSupply() {
-        return windowToSupply;
-    }
-
-    public void setWindowToSupply(String windowToSupply) {
-        this.windowToSupply = windowToSupply;
-    }
-
-    public String getTimeToFix() {
-        return timeToFix;
-    }
-
-    public void setTimeToFix(String timeToFix) {
-        this.timeToFix = timeToFix;
-    }
-
     public String getDecripation() {
         return decripation;
     }
@@ -129,4 +119,16 @@ public class Task extends GeneralDBType {
     public void setDecripation(String decripation) {
         this.decripation = decripation;
     }
+
+    public String getDueDateTime() { return dueDateTime;}
+
+    public void setDueDateTime(String dueDateTime) {this.dueDateTime = dueDateTime; }
+
+    public int getWindowToSupply() { return windowToSupply; }
+
+    public void setWindowToSupply(int windowToSupply) { this.windowToSupply = windowToSupply; }
+
+    public int getTimeToFix() { return timeToFix; }
+
+    public void setTimeToFix(int timeToFix) { this.timeToFix = timeToFix; }
 }
