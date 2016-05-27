@@ -14,6 +14,7 @@ public class main {
         readExcelThread.start();
 
         TasksHandler th = new TasksHandler(readExcel.getTaskList());
+        th.getAll();
 
 
 

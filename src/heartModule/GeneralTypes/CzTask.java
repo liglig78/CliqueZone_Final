@@ -20,10 +20,9 @@ public class CzTask extends CzGeneralType implements Serializable {
 
     private DateTime creatintionTime;
     private DateTime dueDate;
+    private DateTime dueDateTime;
     private int windowToSupply;
     private int timeToFix;
-
-    public Double getTp() { return tp; }
 
     @Override
     public String toString() {
@@ -39,55 +38,20 @@ public class CzTask extends CzGeneralType implements Serializable {
                 ", tp=" + tp +
                 ", creatintionTime=" + creatintionTime +
                 ", dueDate=" + dueDate +
+                ", dueDateTime=" + dueDateTime +
                 ", windowToSupply=" + windowToSupply +
                 ", timeToFix=" + timeToFix +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CzTask)) return false;
+    public Double getTp() { return tp; }
 
-        CzTask czTask = (CzTask) o;
-
-        if (idTask != czTask.idTask) return false;
-        if (Float.compare(czTask.level, level) != 0) return false;
-        if (toolShed != czTask.toolShed) return false;
-        if (vipCustomer != czTask.vipCustomer) return false;
-        if (Double.compare(czTask.tp, tp) != 0) return false;
-        if (windowToSupply != czTask.windowToSupply) return false;
-        if (timeToFix != czTask.timeToFix) return false;
-        if (coustumerName != null ? !coustumerName.equals(czTask.coustumerName) : czTask.coustumerName != null)
-            return false;
-        if (address != null ? !address.equals(czTask.address) : czTask.address != null) return false;
-        if (telephone != null ? !telephone.equals(czTask.telephone) : czTask.telephone != null) return false;
-        if (decripation != null ? !decripation.equals(czTask.decripation) : czTask.decripation != null) return false;
-        if (creatintionTime != null ? !creatintionTime.equals(czTask.creatintionTime) : czTask.creatintionTime != null)
-            return false;
-        return dueDate != null ? dueDate.equals(czTask.dueDate) : czTask.dueDate == null;
-
+    public DateTime getDueDateTime() {
+        return dueDateTime;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = idTask;
-        result = 31 * result + (coustumerName != null ? coustumerName.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-        result = 31 * result + (level != +0.0f ? Float.floatToIntBits(level) : 0);
-        result = 31 * result + (toolShed ? 1 : 0);
-        result = 31 * result + (vipCustomer ? 1 : 0);
-        result = 31 * result + (decripation != null ? decripation.hashCode() : 0);
-        temp = Double.doubleToLongBits(tp);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (creatintionTime != null ? creatintionTime.hashCode() : 0);
-        result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
-        result = 31 * result + windowToSupply;
-        result = 31 * result + timeToFix;
-        return result;
+    public void setDueDateTime(DateTime dueDateTime) {
+        this.dueDateTime = dueDateTime;
     }
 
     public int getIdTask() {

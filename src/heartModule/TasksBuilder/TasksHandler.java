@@ -1,16 +1,18 @@
 package heartModule.TasksBuilder;
 
-import DB.Types.GeneralDBType;
 import DB.Types.Task;
 import heartModule.Conf;
 import heartModule.GeneralTypes.CzGeneralType;
 import heartModule.GeneralTypes.CzTask;
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormat;
+import org.joda.time.format.PeriodFormatter;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,10 +27,14 @@ public class TasksHandler extends TypesHandler {
     public List<CzTask> getAll() {
 
         List<CzTask> list = new ArrayList<CzTask>();
+        DateTimeFormatter formatDate = DateTimeFormat.forPattern(Conf.dateFormat);
+        PeriodFormatter formatTime;
 
         dbList.forEach((task) -> {
             Task dbTask = (Task) task;
+
             CzTask czTask = new CzTask();
+
             czTask.setIdTask(dbTask.getIdTask());
             czTask.setCoustumerName(dbTask.getCoustumerName());
             czTask.setAddress(dbTask.getAddress());
@@ -37,11 +43,18 @@ public class TasksHandler extends TypesHandler {
             czTask.setToolShed(dbTask.isToolShed());
             czTask.setVipCustomer(dbTask.isVipCustomer());
             czTask.setDecripation(dbTask.getDecripation());
-            czTask.setCreatintionTime(DateTime.parse(dbTask.getCreatintionTime()));
-            czTask.setDueDate(DateTime.parse(dbTask.getDueDate()));
-            czTask.setWindowToSupply(dbTask.getWindowToSupply());
+
+            czTask.setCreatintionTime(formatDate.parseDateTime(dbTask.getCreatintionTime()));
+
             czTask.setTimeToFix(dbTask.getTimeToFix());
-            this.TPFunction(czTask.getLevel(), czTask.getDueDate(), czTask.isVipCustomer(), czTask.getCreatintionTime());
+
+            czTask.setDueDate(formatDate.parseDateTime(dbTask.getDueDate()));
+            //czTask.setDueDateTime();
+            czTask.setWindowToSupply(dbTask.getWindowToSupply());
+            czTask.setTp(this.TPFunction(czTask.getLevel(), czTask.getDueDate(), czTask.isVipCustomer(), czTask.getCreatintionTime()));
+
+            System.out.println("czTask = " + czTask);
+            
             list.add(czTask);
         });
 
@@ -51,7 +64,7 @@ public class TasksHandler extends TypesHandler {
 
     @Override
     public void sortAll(List<CzGeneralType> list) {
-
+        
     }
 
 
