@@ -43,12 +43,11 @@ public class TasksHandler extends TypesHandler {
             czTask.setToolShed(dbTask.isToolShed());
             czTask.setVipCustomer(dbTask.isVipCustomer());
             czTask.setDecripation(dbTask.getDecripation());
-
             czTask.setCreatintionTime(formatDate.parseDateTime(dbTask.getCreatintionTime()));
-
             czTask.setTimeToFix(dbTask.getTimeToFix());
-
             czTask.setDueDate(formatDate.parseDateTime(dbTask.getDueDate()));
+
+
             //czTask.setDueDateTime();
             czTask.setWindowToSupply(dbTask.getWindowToSupply());
             czTask.setTp(this.TPFunction(czTask.getLevel(), czTask.getDueDate(), czTask.isVipCustomer(), czTask.getCreatintionTime()));
