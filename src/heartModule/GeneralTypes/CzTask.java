@@ -24,6 +24,9 @@ public class CzTask extends CzGeneralType implements Serializable {
     private int windowToSupply;
     private int timeToFix;
 
+    private boolean isTaken = false;
+
+
     @Override
     public String toString() {
         return "CzTask{" +

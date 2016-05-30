@@ -5,6 +5,7 @@ import heartModule.Conf;
 import heartModule.GeneralTypes.CzGeneralType;
 import heartModule.GeneralTypes.CzTask;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.Duration;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -14,6 +15,9 @@ import org.joda.time.format.PeriodFormatter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Toshiba on 24/05/2016.
@@ -24,9 +28,9 @@ public class TasksHandler extends TypesHandler {
         super(dbList);
     }
 
-    public List<CzTask> getAll() {
+    public Map<Integer, CzTask> getAll() {
 
-        List<CzTask> list = new ArrayList<CzTask>();
+        Map<Integer, CzTask> tasksMap = new ConcurrentHashMap<Integer, CzTask>();
         DateTimeFormatter formatDate = DateTimeFormat.forPattern(Conf.dateFormat);
         PeriodFormatter formatTime;
 
@@ -52,13 +56,11 @@ public class TasksHandler extends TypesHandler {
             czTask.setWindowToSupply(dbTask.getWindowToSupply());
             czTask.setTp(this.TPFunction(czTask.getLevel(), czTask.getDueDate(), czTask.isVipCustomer(), czTask.getCreatintionTime()));
 
-            System.out.println("czTask = " + czTask);
-            
-            list.add(czTask);
+            tasksMap.put(czTask.getIdTask(), czTask);
         });
 
 
-        return list;
+        return tasksMap;
     }
 
     @Override
@@ -79,7 +81,7 @@ public class TasksHandler extends TypesHandler {
      */
     public double TPFunction(float level, DateTime dueDate, boolean vipCustomer, DateTime creatintionTime) {
 
-        double tp = Math.max((int) level, Math.max((vipCustomer) ? 1 : 0, /*Today*/(dueDate == DateTime.now()) ? 1 : 0)) * Conf.criticalFactor;
+        double tp = Math.max((int) level, Math.max((vipCustomer) ? 1 : 0, /*Today*/(Days.daysBetween(DateTime.now(), dueDate).getDays()==0) ? 1 : 0)); /* Conf.criticalFactor;*/
         // TODO: Ageing
 
         return tp;
