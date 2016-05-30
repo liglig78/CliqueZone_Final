@@ -7,10 +7,8 @@ import heartModule.GeneralTypes.CzTask;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.Duration;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.PeriodFormat;
-import org.joda.time.format.PeriodFormatter;
+import org.joda.time.Period;
+import org.joda.time.format.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -32,7 +30,11 @@ public class TasksHandler extends TypesHandler {
 
         Map<Integer, CzTask> tasksMap = new ConcurrentHashMap<Integer, CzTask>();
         DateTimeFormatter formatDate = DateTimeFormat.forPattern(Conf.dateFormat);
-        PeriodFormatter formatTime;
+        DateTimeFormatter formatTime = DateTimeFormat.forPattern(Conf.timeFormat);
+        DateTimeFormatter formatDateTime = DateTimeFormat.forPattern(Conf.dateTimeFormat);
+
+        //PeriodFormatter formatTime;
+
 
         dbList.forEach((task) -> {
             Task dbTask = (Task) task;
@@ -49,11 +51,11 @@ public class TasksHandler extends TypesHandler {
             czTask.setDecripation(dbTask.getDecripation());
             czTask.setCreatintionTime(formatDate.parseDateTime(dbTask.getCreatintionTime()));
             czTask.setTimeToFix(dbTask.getTimeToFix());
-            czTask.setDueDate(formatDate.parseDateTime(dbTask.getDueDate()));
-
-
-            //czTask.setDueDateTime();
+           // czTask.setDueDate(formatDateTime.parseDateTime(dbTask.getDueDate()+"-"+dbTask.getDueDateTime()));
+            czTask.setDueDate(formatDateTime.parseDateTime(Conf.today+"-"+dbTask.getDueDateTime()));
             czTask.setWindowToSupply(dbTask.getWindowToSupply());
+            czTask.setDueDateTime((formatTime.parseDateTime(dbTask.getDueDateTime())));
+
             czTask.setTp(this.TPFunction(czTask.getLevel(), czTask.getDueDate(), czTask.isVipCustomer(), czTask.getCreatintionTime()));
 
             tasksMap.put(czTask.getIdTask(), czTask);
@@ -62,6 +64,8 @@ public class TasksHandler extends TypesHandler {
 
         return tasksMap;
     }
+
+
 
     @Override
     public void sortAll(List<CzGeneralType> list) {

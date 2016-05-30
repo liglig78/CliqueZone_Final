@@ -13,5 +13,8 @@ public class Conf {
     //for technicians schedule
     public static double scheduleSliceTime  = 1;
     public static String dateFormat = "dd/MM/yyyy";
-    public static String timeFormat = "hh:mm";
+    public static String timeFormat = "HH:mm";
+    public static String dateTimeFormat = dateFormat+"-"+timeFormat;
+    public static String today = "30/05/2016";
+
 }
