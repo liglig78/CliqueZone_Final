@@ -16,5 +16,6 @@ public class Conf {
     public static String timeFormat = "HH:mm";
     public static String dateTimeFormat = dateFormat+"-"+timeFormat;
     public static String today = "30/05/2016";
+    public static String googleApiKey = "AIzaSyBF-s6KlxslCKL1eDDXSWi0-0-d64RGQuY";
 
 }

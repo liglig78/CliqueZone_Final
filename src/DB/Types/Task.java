@@ -1,5 +1,7 @@
 package DB.Types;
 
+import com.google.maps.model.LatLng;
+
 /**
  * Created by ASUS-PC on 13/05/2016.
  */
@@ -7,6 +9,7 @@ public class Task extends GeneralDBType {
     private int idTask;
     private String coustumerName;
     private String address;
+    private LatLng latLng;
     private String telephone;
     private String creatintionTime;
     private float level;
@@ -131,4 +134,8 @@ public class Task extends GeneralDBType {
     public int getTimeToFix() { return timeToFix; }
 
     public void setTimeToFix(int timeToFix) { this.timeToFix = timeToFix; }
+
+    public LatLng getLatLng() { return latLng; }
+
+    public void setLatLng(LatLng latLng) { this.latLng = latLng;}
 }

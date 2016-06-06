@@ -1,17 +1,21 @@
 package DB.Types;
+
+import com.google.maps.model.LatLng;
+
 /**
  * Created by ASUS-PC on 13/05/2016.
  */
 public class Technician {
 
-    int id;
-    String name;
-    String beginningTime;
-    float workHoures;
-    int specialty;
-    String homeLocation;
-    int seniority;
-    boolean isInOffice;
+    private int id;
+    private String name;
+    private String beginningTime;
+    private float workHoures;
+    private int specialty;
+    private String homeLocation;
+    private LatLng latLng;
+    private int seniority;
+    private boolean isInOffice;
 
     @Override
     public String toString() {
@@ -91,5 +95,7 @@ public class Technician {
         this.id = id;
     }
 
+    public LatLng getLatLng() { return latLng; }
 
+    public void setLatLng(LatLng latLng) { this.latLng = latLng;}
 }

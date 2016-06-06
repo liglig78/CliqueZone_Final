@@ -6,15 +6,11 @@ import heartModule.GeneralTypes.CzGeneralType;
 import heartModule.GeneralTypes.CzTask;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Duration;
-import org.joda.time.Period;
 import org.joda.time.format.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
