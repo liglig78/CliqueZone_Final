@@ -14,7 +14,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by Toshiba on 24/05/2016.
+ * Created by ligal on 22/05/2016.
+ *
+ * this class build list of tasked with calculate priority.
+ * ### similar tasks combines to "one task"
  */
 public class TasksHandler extends TypesHandler {
 

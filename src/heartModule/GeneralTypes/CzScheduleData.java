@@ -6,5 +6,5 @@ package heartModule.GeneralTypes;
 public class CzScheduleData extends CzGeneralType{
     float ATT;
     CzTask task;
-    int duration;
+    int drivingTime;
 }

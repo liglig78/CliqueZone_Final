@@ -1,5 +1,6 @@
 package heartModule.GeneralTypes;
 
+import com.google.maps.model.LatLng;
 import org.joda.time.DateTime;
 
 /**
@@ -10,7 +11,7 @@ public class CzTechnician extends CzGeneralType {
     String name;
     DateTime beginningTime;
     float workHoures;
-    String homeLocation;
+    LatLng homeLocation;
     // how much time in this subject
     float specialty;
     // how much time in company

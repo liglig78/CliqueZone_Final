@@ -32,7 +32,7 @@ public class ExcelHandler implements Runnable {
     String PROJECT_PATH = new File(".").getCanonicalPath();
     String fileNameAgents = "./resources/AgentsDB.csv";
     String fileNameTasks = "./resources/TaskDB33.csv";
-
+    String fileNameAddresses = "./resources/AddressesDB.csv";
 
     /**
      * @param addressesConverter - can be null in case we whant to read the coordinates from the BD,
@@ -102,7 +102,7 @@ public class ExcelHandler implements Runnable {
 
     private void creatAddressesDb(Map<String, LatLng> addressesMap, String addressesFileName) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(addressesFileName));
-        writer.writeNext(new String[] {"address", "lat", "lng"});
+        writer.writeNext(new String[]{"address", "lat", "lng"});
         addressesMap.forEach((address, latlng) -> {
             String[] entry = new String[]{address, String.valueOf(latlng.lat), String.valueOf(latlng.lng)};
             writer.writeNext(entry);
@@ -120,41 +120,41 @@ public class ExcelHandler implements Runnable {
             Map<String, LatLng> addressesMap;
             if (addressesConverter != null) {
 
-                addressesMap = gettingAllCoordinations("./resources/AddressesDB.csv");
+                addressesMap = gettingAllCoordinations(fileNameAddresses);
 
                 taskList.forEach(task -> {
-                        LatLng latLng = addressesMap.get(task.getAddress());
-                        if (latLng == null)  {
-                            try {
-                                latLng = addressesConverter.convertAddress(task.getAddress());
-                                addressesMap.put(task.getAddress(), latLng);
-                            } catch (Exception e) {
-                                System.out.println("Error: problem with task #"+ task.getIdTask()+" address");
-                            }
+                    LatLng latLng = addressesMap.get(task.getAddress());
+                    if (latLng == null) {
+                        try {
+                            latLng = addressesConverter.convertAddress(task.getAddress());
+                            addressesMap.put(task.getAddress(), latLng);
+                        } catch (Exception e) {
+                            System.out.println("Error: problem with task #" + task.getIdTask() + " address");
                         }
-                        task.setLatLng(latLng);
+                    }
+                    task.setLatLng(latLng);
                 });
 
                 techniciansList.forEach(technician -> {
 
-                        LatLng latLng = addressesMap.get(technician.getHomeLocation());
-                        if (latLng == null) {
-                            try {
-                                latLng = addressesConverter.convertAddress(technician.getHomeLocation());
+                    LatLng latLng = addressesMap.get(technician.getHomeLocation());
+                    if (latLng == null) {
+                        try {
+                            latLng = addressesConverter.convertAddress(technician.getHomeLocation());
                             addressesMap.put(technician.getHomeLocation(), latLng);
-                            } catch (Exception e) {
+                        } catch (Exception e) {
 
-                                System.out.println("Error: problem with technician #"+ technician.getId() +" address");
-                            }
+                            System.out.println("Error: problem with technician #" + technician.getId() + " address");
                         }
-                        technician.setLatLng(latLng);
+                    }
+                    technician.setLatLng(latLng);
                 });
 
 
-                creatAddressesDb(addressesMap, "./resources/AddressesDB.csv");
+                creatAddressesDb(addressesMap, fileNameAddresses);
 
             } else {
-                addressesMap = gettingAllCoordinations("./resources/AddressesDB.csv");
+                addressesMap = gettingAllCoordinations(fileNameAddresses);
                 techniciansList.forEach(technician -> {
                     technician.setLatLng(addressesMap.get(technician.getHomeLocation()));
                 });
@@ -169,7 +169,7 @@ public class ExcelHandler implements Runnable {
         }
     }
 
-    private  Map<String, LatLng> gettingAllCoordinations(String fileName) throws IOException {
+    private Map<String, LatLng> gettingAllCoordinations(String fileName) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(fileName));
         Map<String, LatLng> addressesMap = new HashMap<>();
         String[] nextLine = reader.readNext();
@@ -177,7 +177,7 @@ public class ExcelHandler implements Runnable {
         while ((nextLine = reader.readNext()) != null) {
             try {
 
-            addressesMap.put(nextLine[0], new LatLng(Double.parseDouble(nextLine[1]), Double.parseDouble(nextLine[2])));
+                addressesMap.put(nextLine[0], new LatLng(Double.parseDouble(nextLine[1]), Double.parseDouble(nextLine[2])));
             } catch (Exception e) {
                 System.out.println("somthing wrong!");
             }
