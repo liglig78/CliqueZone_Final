@@ -58,6 +58,7 @@ public class TectionitionsHandler extends TypesHandler {
     }
 
 
+
     @Override
     public void sortAll(List<CzGeneralType> list) {
 

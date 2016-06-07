@@ -7,5 +7,6 @@ import java.util.Map;
  */
 public class CzTechnitionSchedule extends CzGeneralType {
     CzTechnician tecnition;
+    // <Time, CzScheduleData OnTime>
     Map<String, CzScheduleData> schedule;
 }
