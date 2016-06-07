@@ -5,7 +5,7 @@ import com.google.maps.model.LatLng;
 /**
  * Created by ASUS-PC on 13/05/2016.
  */
-public class Technician {
+public class Technician extends GeneralDBType {
 
     private int id;
     private String name;

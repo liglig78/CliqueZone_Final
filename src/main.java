@@ -1,6 +1,8 @@
 import DB.Actions.AddressesConverter;
 import DB.Actions.ExcelHandler;
 import heartModule.Conf;
+import heartModule.TasksBuilder.TasksHandler;
+import heartModule.TasksBuilder.TectionitionsHandler;
 
 import java.io.IOException;
 
@@ -14,10 +16,12 @@ public class main {
         Thread readExcelThread = new Thread(readExcel);
         readExcelThread.run();
 
-       // readExcelThread.join();
+        readExcelThread.join();
 
-        // TasksHandler th = new TasksHandler(readExcel.getTaskList());
-        //th.getAll();
+        TasksHandler tasksHandler = new TasksHandler(readExcel.getTaskList());
+        tasksHandler.getAll();
+        TectionitionsHandler tectionitionsHandler = new TectionitionsHandler(readExcel.getTechniciansList());
+        tectionitionsHandler.getAll();
 
 
 
