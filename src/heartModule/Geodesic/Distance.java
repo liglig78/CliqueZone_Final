@@ -1,12 +1,16 @@
 package heartModule.Geodesic;
 
+import com.google.maps.model.LatLng;
+
 /**
  * Get distance in metres between 2 points:
  * Created by Toshiba on 03/06/2016.
  */
 public class Distance {
-    public double getDistance(double lat1, double lon1, double lat2, double lon2)
+    public static double getDistance(LatLng latLng1, LatLng latLng2)
     {
+        double lat1 = latLng1.lat; double lon1 = latLng1.lng; double lat2 = latLng2.lat; double lon2 = latLng1.lng;
+
         double a = 6378137, b = 6356752.314245, f = 1 / 298.257223563;
         double L = Math.toRadians(lon2 - lon1);
         double U1 = Math.atan((1 - f) * Math.tan(Math.toRadians(lat1)));

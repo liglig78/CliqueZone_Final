@@ -10,8 +10,8 @@ public class Conf {
 
     public static double criticalFactor = 0.7;
     public static double ageingFactor = 1-criticalFactor;
-    //for technicians schedule
-    public static double scheduleSliceTime  = 1;
+    //for technicians schedule.[Minutes]
+    public static int scheduleSliceTime  = 20;
     public static String dateFormat = "dd/MM/yyyy";
     public static String timeFormat = "HH:mm";
     public static String dateTimeFormat = dateFormat+"-"+timeFormat;

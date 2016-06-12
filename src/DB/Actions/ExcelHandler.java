@@ -92,7 +92,7 @@ public class ExcelHandler implements Runnable {
             task.setDueDateTime(nextLine[11]);
             task.setWindowToSupply(Integer.parseInt(nextLine[12]));
             task.setTimeToFix(Integer.parseInt(nextLine[13]));
-            task.setDecripation(nextLine[14]);
+            //task.setDecripation(nextLine[14]);
 
             //    System.out.println("task = " + task);
             taskList.add(task);

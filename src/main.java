@@ -1,10 +1,15 @@
 import DB.Actions.AddressesConverter;
 import DB.Actions.ExcelHandler;
+import DB.Actions.ExcelResutWriter;
 import heartModule.Conf;
+import heartModule.GeneralTypes.CzTask;
+import heartModule.GeneralTypes.CzTechnician;
+import heartModule.Manager;
 import heartModule.TasksBuilder.TasksHandler;
 import heartModule.TasksBuilder.TectionitionsHandler;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Toshiba on 24/05/2016.
@@ -19,10 +24,14 @@ public class main {
         readExcelThread.join();
 
         TasksHandler tasksHandler = new TasksHandler(readExcel.getTaskList());
-        tasksHandler.getAll();
+        List<CzTask> tasks = tasksHandler.getAll();
         TectionitionsHandler tectionitionsHandler = new TectionitionsHandler(readExcel.getTechniciansList());
-        tectionitionsHandler.getAll();
+        List<CzTechnician> technician = tectionitionsHandler.getAll();
 
+        Manager manager = new Manager(technician, tasks);
+        manager.setUpHungarian();
+
+        ExcelResutWriter excelResutWriter= new ExcelResutWriter(manager.getTechniciansSchedule());
 
 
     }

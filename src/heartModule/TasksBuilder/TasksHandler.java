@@ -9,6 +9,7 @@ import org.joda.time.Days;
 import org.joda.time.format.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,9 +26,9 @@ public class TasksHandler extends TypesHandler {
         super(dbList);
     }
 
-    public Map<Integer, CzTask> getAll() {
+    public List<CzTask> getAll() {
 
-        Map<Integer, CzTask> tasksMap = new ConcurrentHashMap<Integer, CzTask>();
+        List<CzTask> tasksMap = new ArrayList<>();
         DateTimeFormatter formatDate = DateTimeFormat.forPattern(Conf.dateFormat);
         DateTimeFormatter formatTime = DateTimeFormat.forPattern(Conf.timeFormat);
         DateTimeFormatter formatDateTime = DateTimeFormat.forPattern(Conf.dateTimeFormat);
@@ -54,10 +55,10 @@ public class TasksHandler extends TypesHandler {
             czTask.setDueDate(formatDateTime.parseDateTime(Conf.today+"-"+dbTask.getDueDateTime()));
             czTask.setWindowToSupply(dbTask.getWindowToSupply());
             czTask.setDueDateTime((formatTime.parseDateTime(dbTask.getDueDateTime())));
-
+            czTask.setLatLngAddress(dbTask.getLatLng());
             czTask.setTp(this.TPFunction(czTask.getLevel(), czTask.getDueDate(), czTask.isVipCustomer(), czTask.getCreatintionTime()));
 
-            tasksMap.put(czTask.getIdTask(), czTask);
+            tasksMap.add(czTask);
         });
 
 

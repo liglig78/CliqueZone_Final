@@ -17,7 +17,6 @@ public abstract class TypesHandler {
         this.dbList = dbList;
     }
 
-    public abstract Map<Integer, ? extends CzGeneralType> getAll();
+    public abstract List<? extends CzGeneralType> getAll();
     public abstract void sortAll(List<CzGeneralType> list);
-
 }

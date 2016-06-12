@@ -3,6 +3,8 @@ package heartModule.GeneralTypes;
 import com.google.maps.model.LatLng;
 import org.joda.time.DateTime;
 
+import javax.xml.crypto.Data;
+
 /**
  * Created by ASUS-PC on 22/05/2016.
  */
@@ -11,12 +13,13 @@ public class CzTechnician extends CzGeneralType {
     private String name;
     private DateTime beginningTime;
     private float workHoures;
-    private LatLng homeLocation;
+    private String homeLocation;
     // how much time in this subject
     private float specialty;
     // how much time in company
     private float seniority;
     private boolean isInOffice;
+    private LatLng latLngAddress;
 
     @Override
     public String toString() {
@@ -96,11 +99,11 @@ public class CzTechnician extends CzGeneralType {
         this.workHoures = workHoures;
     }
 
-    public LatLng getHomeLocation() {
+    public String getHomeLocation() {
         return homeLocation;
     }
 
-    public void setHomeLocation(LatLng homeLocation) {
+    public void setHomeLocation(String homeLocation) {
         this.homeLocation = homeLocation;
     }
 
@@ -126,5 +129,19 @@ public class CzTechnician extends CzGeneralType {
 
     public void setInOffice(boolean inOffice) {
         isInOffice = inOffice;
+    }
+
+    public LatLng getLatLngAddress() {
+        return latLngAddress;
+    }
+
+    public void setLatLngAddress(LatLng latLngAddress) {
+        this.latLngAddress = latLngAddress;
+    }
+
+    public DateTime getEndTime() {
+        int houre = (int) workHoures;
+        int minutes = ((int) (workHoures - ((int)workHoures)) * 60);
+        return beginningTime.plusHours(houre).plusMinutes(minutes);
     }
 }

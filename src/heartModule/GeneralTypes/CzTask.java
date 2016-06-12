@@ -1,5 +1,6 @@
 package heartModule.GeneralTypes;
 
+import com.google.maps.model.LatLng;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
@@ -17,12 +18,13 @@ public class CzTask extends CzGeneralType implements Serializable {
     private boolean vipCustomer;
     private String decripation;
     private double tp;
-
     private DateTime creatintionTime;
     private DateTime dueDate;
     private DateTime dueDateTime;
+    // in [Hours]
     private int windowToSupply;
     private int timeToFix;
+    private LatLng latLngAddress;
 
     private boolean isTaken = false;
 
@@ -47,7 +49,9 @@ public class CzTask extends CzGeneralType implements Serializable {
                 '}';
     }
 
-    public Double getTp() { return tp; }
+    public Double getTp() {
+        return tp;
+    }
 
     public DateTime getDueDateTime() {
         return dueDateTime;
@@ -156,4 +160,19 @@ public class CzTask extends CzGeneralType implements Serializable {
     public void setTimeToFix(int timeToFix) {
         this.timeToFix = timeToFix;
     }
+
+    public LatLng getLatLngAddress() {
+        return latLngAddress;
+    }
+
+    public void setLatLngAddress(LatLng latLngAddress) {
+        this.latLngAddress = latLngAddress;
+    }
+
+    public DateTime getEndTime() {
+        int houre = windowToSupply;
+        int minutes = ((int) (windowToSupply - ((int) windowToSupply)) * 60);
+        return dueDateTime.plusHours(houre).plusMinutes(minutes);
+    }
+
 }

@@ -12,6 +12,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,9 +29,9 @@ public class TectionitionsHandler extends TypesHandler {
         super(dbList);
     }
 
-    public Map<Integer, CzTechnician> getAll() {
+    public List<CzTechnician> getAll() {
 
-        Map<Integer, CzTechnician> tecnitionMap = new ConcurrentHashMap<Integer, CzTechnician>();
+        List<CzTechnician> tecnitionMap = new ArrayList<>();
         DateTimeFormatter formatDate = DateTimeFormat.forPattern(Conf.dateFormat);
         DateTimeFormatter formatTime = DateTimeFormat.forPattern(Conf.timeFormat);
         DateTimeFormatter formatDateTime = DateTimeFormat.forPattern(Conf.dateTimeFormat);
@@ -44,14 +45,14 @@ public class TectionitionsHandler extends TypesHandler {
             CzTechnician czTechnician = new CzTechnician();
             czTechnician.setId(dbTecnition.getId());
             czTechnician.setBeginningTime((formatTime.parseDateTime(dbTecnition.getBeginningTime())));
-            czTechnician.setHomeLocation(dbTecnition.getLatLng());
+            czTechnician.setHomeLocation(dbTecnition.getHomeLocation());
             czTechnician.setInOffice(dbTecnition.isInOffice());
             czTechnician.setName(dbTecnition.getName());
             czTechnician.setSeniority(dbTecnition.getSeniority());
             czTechnician.setSpecialty(dbTecnition.getSpecialty());
             czTechnician.setWorkHoures(dbTecnition.getWorkHoures());
-            tecnitionMap.put(czTechnician.getId(), czTechnician);
-            System.out.println("czTechnician = " + czTechnician);
+            czTechnician.setLatLngAddress(dbTecnition.getLatLng());
+            tecnitionMap.add(czTechnician);
         });
 
         return tecnitionMap;
